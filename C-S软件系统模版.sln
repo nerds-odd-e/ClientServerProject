@@ -6,12 +6,18 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{8C97F322-4306-40FC-AFCF-753384D80046}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件系统客户端模版", "软件系统客户端模版\软件系统客户端模版.csproj", "{1A4C9858-C8D6-45FB-802A-3513400D11F3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2063879B-D561-47FF-A0D5-6CEF2B9E4ABD} = {2063879B-D561-47FF-A0D5-6CEF2B9E4ABD}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件系统服务端模版", "软件系统服务端模版\软件系统服务端模版.csproj", "{2AFB749C-A6CE-4B2A-B02D-4FC7BB8ADA30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件系统客户端Wpf", "软件系统客户端Wpf\软件系统客户端Wpf.csproj", "{DB8977DD-F909-449D-B58E-08B8A6A78F2F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientsLibrary", "ClientsLibrary\ClientsLibrary.csproj", "{2063879B-D561-47FF-A0D5-6CEF2B9E4ABD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8C97F322-4306-40FC-AFCF-753384D80046} = {8C97F322-4306-40FC-AFCF-753384D80046}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "软件系统浏览器模版", "软件系统浏览器模版\软件系统浏览器模版.csproj", "{9F528713-4869-4CD2-B76B-38AE5FEE6E7F}"
 EndProject

@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 using CommonLibrary;
 using HslCommunication.BasicFramework;
 using System.Net;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace ClientsLibrary
 {
@@ -42,8 +45,8 @@ namespace ClientsLibrary
         /// <param name="clientType">客户端登录类型</param>
         /// <returns></returns>
         public static bool AccountLoginServer(
-            Action<string> message_show, 
-            Action start_update, 
+            Action<string> message_show,
+            Action start_update,
             Action thread_finish,
             string userName,
             string password,
@@ -57,117 +60,35 @@ namespace ClientsLibrary
                 { UserAccount.UserNameText, new JValue(userName) },                                    // 用户名
                 { UserAccount.PasswordText, new JValue(password) },                                    // 密码
             };
-            // HttpClient httpClient = new HttpClient()
-            OperateResult<string> result = UserClient.Net_simplify_client.ReadFromServer(CommonHeadCode.SimplifyHeadCode.账户检查, json.ToString());
-            if (result.IsSuccess)
-            {
-                // 服务器应该返回账户的信息
-                UserAccount account = JObject.Parse(result.Content).ToObject<UserAccount>();
-                if (!account.LoginEnable)
-                {
-                    // 不允许登录
-                    message_show.Invoke(account.ForbidMessage);
-                    thread_finish.Invoke();
-                    return false;
-                }
-                UserClient.UserAccount = account;
-            }
-            else
-            {
-                // 访问失败
-                message_show.Invoke(result.Message);
-                thread_finish.Invoke();
-                return false;
-            }
-
-            // 登录成功，进行保存用户名称和密码
+            User user = new User();
+            user.userName = userName;
+            user.password = password;
             UserClient.JsonSettings.LoginName = userName;
             UserClient.JsonSettings.Password = remember ? password : "";
             UserClient.JsonSettings.LoginTime = DateTime.Now;
+            UserClient.JsonSettings.Token = login(user).Result;
             UserClient.JsonSettings.SaveToFile();
-
-
-            // 版本验证
-            message_show.Invoke("正在验证版本...");
-
-            // 延时
-            Thread.Sleep(200);
-
-            result = UserClient.Net_simplify_client.ReadFromServer(CommonHeadCode.SimplifyHeadCode.更新检查);
-            if (result.IsSuccess)
-            {
-                // 服务器应该返回服务器的版本号
-                SystemVersion sv = new SystemVersion(result.Content);
-                // 系统账户跳过低版本检测，该做法存在一定的风险，需要开发者仔细确认安全隐患
-                if (UserClient.UserAccount.UserName != "admin")
-                {
-                    if (UserClient.CurrentVersion != sv)
-                    {
-                        // 保存新版本信息
-                        UserClient.JsonSettings.IsNewVersionRunning = true;
-                        UserClient.JsonSettings.SaveToFile();
-                        // 和当前系统版本号不一致，启动更新
-                        start_update.Invoke();
-                        return false;
-                    }
-                }
-                else
-                {
-                    // 超级管理员可以使用超前版本进行登录
-                    if (UserClient.CurrentVersion < sv)
-                    {
-                        // 保存新版本信息
-                        UserClient.JsonSettings.IsNewVersionRunning = true;
-                        UserClient.JsonSettings.SaveToFile();
-                        // 和当前系统版本号不一致，启动更新
-                        start_update.Invoke();
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                // 访问失败
-                message_show.Invoke(result.Message);
-                thread_finish.Invoke();
-                return false;
-            }
-
-
-            //
-            // 验证结束后，根据需要是否下载服务器的数据，或是等到进入主窗口下载也可以
-            // 如果有参数决定主窗口的显示方式，那么必要在下面向服务器请求数据
-            // 以下展示了初始化参数的功能
-
-            message_show.Invoke("正在下载参数...");
-
-            // 延时
-            Thread.Sleep(200);
-
-
-            result = UserClient.Net_simplify_client.ReadFromServer(CommonLibrary.CommonHeadCode.SimplifyHeadCode.参数下载);
-            if (result.IsSuccess)
-            {
-                // 服务器返回初始化的数据，此处进行数据的提取，有可能包含了多个数据
-                json = JObject.Parse(result.Content);
-                // 例如公告数据和分厂数据
-                UserClient.Announcement = SoftBasic.GetValueFromJsonObject(json, nameof(UserClient.Announcement), "");
-                if (json[nameof(UserClient.SystemFactories)] != null)
-                {
-                    UserClient.SystemFactories = json[nameof(UserClient.SystemFactories)].ToObject<List<string>>();
-                }
-                CommonLibrary.DataBaseSupport.SqlServerSupport.ConnectionString = SoftBasic.GetValueFromJsonObject(json, nameof(ServerSettings.SqlServerStr), "");
-            }
-            else
-            {
-                // 访问失败
-                message_show.Invoke(result.Message);
-                thread_finish.Invoke();
-                return false;
-            }
-
             return true;
         }
-        
+
+        static async Task<string> login(User user)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://10.0.2.2:10081/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await client.PostAsJsonAsync(
+      "users/login", user);
+            response.EnsureSuccessStatusCode();
+
+            return response.Headers.GetValues("token").First();
+        }
+
+        private class User
+        {
+            public String userName { get; set; }
+            public String password { get; set; }
+        }
     }
 }

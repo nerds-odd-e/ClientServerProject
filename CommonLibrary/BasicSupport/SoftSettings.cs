@@ -256,6 +256,7 @@ namespace CommonLibrary
         /// 当前计算机的机器码，用来判定参数是否是正确的
         /// </summary>
         public string SystemInfo { get; private set; }
+        public string Token { get; set; }
 
 
         #endregion
