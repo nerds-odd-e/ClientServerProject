@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ClientsLibrary;
 
 namespace 软件系统客户端模版.UIControls
 {
@@ -31,6 +32,11 @@ namespace 软件系统客户端模版.UIControls
         {
             // 英文
             CommonLibrary.UserLocalization.SettingLocalization("English");
+        }
+
+        private void RenderMain_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Welcome " + UserClient.JsonSettings.LoginName;
         }
     }
 }
