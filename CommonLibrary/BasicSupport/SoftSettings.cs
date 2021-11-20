@@ -219,7 +219,7 @@ namespace CommonLibrary
         /// </summary>
         public JsonSettings()
         {
-            SystemInfo = SoftAuthorize.GetInfo();
+           // SystemInfo = SoftAuthorize.GetInfo();
         }
 
         #endregion

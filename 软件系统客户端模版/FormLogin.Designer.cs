@@ -45,7 +45,7 @@ namespace 软件系统客户端模版
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(35, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 21);
@@ -54,7 +54,7 @@ namespace 软件系统客户端模版
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 21F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(396, 36);
@@ -82,7 +82,7 @@ namespace 软件系统客户端模版
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(35, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 21);
@@ -94,7 +94,7 @@ namespace 软件系统客户端模版
             this.userButton_login.BackColor = System.Drawing.Color.Transparent;
             this.userButton_login.CustomerInformation = "";
             this.userButton_login.EnableColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(190)))), ((int)(((byte)(190)))));
-            this.userButton_login.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.userButton_login.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.userButton_login.Location = new System.Drawing.Point(318, 57);
             this.userButton_login.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.userButton_login.Name = "userButton_login";
@@ -107,7 +107,7 @@ namespace 软件系统客户端模版
             // 
             this.label_version.AutoSize = true;
             this.label_version.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label_version.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_version.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_version.ForeColor = System.Drawing.Color.Gray;
             this.label_version.Location = new System.Drawing.Point(1, 176);
             this.label_version.Name = "label_version";
@@ -118,7 +118,7 @@ namespace 软件系统客户端模版
             // 
             // label_copyright
             // 
-            this.label_copyright.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_copyright.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_copyright.ForeColor = System.Drawing.Color.Gray;
             this.label_copyright.Location = new System.Drawing.Point(215, 176);
             this.label_copyright.Name = "label_copyright";
@@ -129,7 +129,7 @@ namespace 软件系统客户端模版
             // 
             // label_status
             // 
-            this.label_status.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_status.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label_status.ForeColor = System.Drawing.Color.Blue;
             this.label_status.Location = new System.Drawing.Point(15, 151);
             this.label_status.Name = "label_status";
@@ -141,7 +141,7 @@ namespace 软件系统客户端模版
             // checkBox_remeber
             // 
             this.checkBox_remeber.AutoSize = true;
-            this.checkBox_remeber.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox_remeber.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.checkBox_remeber.Location = new System.Drawing.Point(115, 127);
             this.checkBox_remeber.Name = "checkBox_remeber";
             this.checkBox_remeber.Size = new System.Drawing.Size(87, 21);
@@ -165,7 +165,7 @@ namespace 软件系统客户端模版
             this.Controls.Add(this.textBox_userName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FormLogin";

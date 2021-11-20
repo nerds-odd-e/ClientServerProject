@@ -90,11 +90,11 @@ namespace CommonLibrary
         /// <summary>
         /// 用于存储和传送的名称
         /// </summary>
-        public static string UserNameText { get { return "UserName"; } }
+        public static string UserNameText { get { return "userName"; } }
         /// <summary>
         /// 用于存储和传送的名称
         /// </summary>
-        public static string PasswordText { get { return "Password"; } }
+        public static string PasswordText { get { return "password"; } }
         /// <summary>
         /// 用于存储和传送的名称
         /// </summary>

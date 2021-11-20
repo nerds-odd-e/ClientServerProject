@@ -7,6 +7,7 @@ using System.Threading;
 using Newtonsoft.Json.Linq;
 using CommonLibrary;
 using HslCommunication.BasicFramework;
+using System.Net.Http;
 
 namespace ClientsLibrary
 {
@@ -50,6 +51,7 @@ namespace ClientsLibrary
             string clientType
             )
         {
+            /*
             message_show.Invoke("正在维护检查...");
 
             Thread.Sleep(200);
@@ -74,6 +76,7 @@ namespace ClientsLibrary
                 thread_finish.Invoke();
                 return false;
             }
+            */
 
 
 
@@ -94,11 +97,9 @@ namespace ClientsLibrary
             {
                 { UserAccount.UserNameText, new JValue(userName) },                                    // 用户名
                 { UserAccount.PasswordText, new JValue(password) },                                    // 密码
-                { UserAccount.LoginWayText, new JValue(clientType) },                                  // 登录方式
-                { UserAccount.DeviceUniqueID, new JValue(UserClient.JsonSettings.SystemInfo) },        // 客户端唯一ID
-                { UserAccount.FrameworkVersion, new JValue(SoftBasic.FrameworkVersion.ToString()) }    // 客户端框架版本
             };
-            result = UserClient.Net_simplify_client.ReadFromServer(CommonHeadCode.SimplifyHeadCode.账户检查, json.ToString());
+            // HttpClient httpClient = new HttpClient()
+            OperateResult<string> result = UserClient.Net_simplify_client.ReadFromServer(CommonHeadCode.SimplifyHeadCode.账户检查, json.ToString());
             if (result.IsSuccess)
             {
                 // 服务器应该返回账户的信息
