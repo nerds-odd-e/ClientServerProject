@@ -7,7 +7,7 @@ using System.Threading;
 using Newtonsoft.Json.Linq;
 using CommonLibrary;
 using HslCommunication.BasicFramework;
-using System.Net.Http;
+using System.Net;
 
 namespace ClientsLibrary
 {
@@ -51,47 +51,6 @@ namespace ClientsLibrary
             string clientType
             )
         {
-            /*
-            message_show.Invoke("正在维护检查...");
-
-            Thread.Sleep(200);
-            
-            // 请求指令头数据，该数据需要更具实际情况更改
-            OperateResult<string> result = UserClient.Net_simplify_client.ReadFromServer(CommonLibrary.CommonHeadCode.SimplifyHeadCode.维护检查);
-            if (result.IsSuccess)
-            {
-                byte[] temp = Encoding.Unicode.GetBytes(result.Content);
-                // 例如返回结果为1说明允许登录，0则说明服务器处于维护中，并将信息显示
-                if (result.Content != "1")
-                {
-                    message_show.Invoke(result.Content.Substring(1));
-                    thread_finish.Invoke();
-                    return false;
-                }
-            }
-            else
-            {
-                // 访问失败
-                message_show.Invoke(result.Message);
-                thread_finish.Invoke();
-                return false;
-            }
-            */
-
-
-
-            // 检查账户
-            message_show.Invoke("正在检查账户...");
-
-            // 延时
-            Thread.Sleep(200);
-
-            //=======================================================================================
-            //
-            //   根据实际情况校验，选择数据库校验或是将用户名密码发至服务器校验
-            //   以下展示了服务器校验的方法，如您需要数据库校验，请删除下面并改成SQL访问验证的方式
-            //   如果还有其他数据一并传到服务器进行验证的，都在下面进行数据包装
-
             // 包装数据
             JObject json = new JObject
             {
