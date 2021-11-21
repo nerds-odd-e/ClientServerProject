@@ -66,9 +66,21 @@ namespace ClientsLibrary
             UserClient.JsonSettings.LoginName = userName;
             UserClient.JsonSettings.Password = remember ? password : "";
             UserClient.JsonSettings.LoginTime = DateTime.Now;
-            UserClient.JsonSettings.Token = login(user).Result;
-            UserClient.JsonSettings.SaveToFile();
-            return true;
+            try
+            {
+                UserClient.JsonSettings.Token = login(user).Result;
+                UserClient.JsonSettings.SaveToFile();
+                return true;
+            }
+            catch
+            {
+                message_show.Invoke("无效的用户名或密码");
+                return false;
+            }
+            finally
+            {
+                thread_finish.Invoke();
+            }
         }
 
         static async Task<string> login(User user)

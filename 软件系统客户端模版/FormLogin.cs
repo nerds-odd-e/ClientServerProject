@@ -114,8 +114,6 @@ namespace 软件系统客户端模版
                 textBox_password.Focus();
                 return;
             }
-
-            label_status.Text = "正在验证维护状态...";
             UISettings(false);
 
             ThreadAccountLogin = new Thread(ThreadCheckAccount);
