@@ -86,7 +86,7 @@ namespace ClientsLibrary
         static async Task<string> login(User user)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://10.0.2.2:10081/");
+            client.BaseAddress = new Uri("http://api.net:10081/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
