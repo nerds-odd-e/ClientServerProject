@@ -85,16 +85,39 @@ namespace ClientsLibrary
 
         static async Task<string> login(User user)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://api.net:10081/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.PostAsJsonAsync(
-      "users/login", user);
-            response.EnsureSuccessStatusCode();
+            //      HttpClient client = new HttpClient();
+            //      client.BaseAddress = new Uri("http://api.net:10081/");
+            //      client.DefaultRequestHeaders.Accept.Clear();
+            //      client.DefaultRequestHeaders.Accept.Add(
+            //          new MediaTypeWithQualityHeaderValue("application/json"));
+            //      HttpResponseMessage response = await client.PostAsJsonAsync(
+            //"users/login", user);
+            //      response.EnsureSuccessStatusCode();
 
-            return response.Headers.GetValues("token").First();
+            //      return response.Headers.GetValues("token").First();
+            using (Ice.Communicator communicator = Ice.Util.initialize())
+            {
+                var obj = communicator.stringToProxy("LoginService:default -h localhost -p 10000");
+                var service = Demo.LoginServicePrxHelper.checkedCast(obj);
+                if (service == null)
+                {
+                    throw new ApplicationException("Invalid proxy");
+                }
+
+                var response = service.login(new Demo.LoginRequest(user.userName, user.password));
+                if (response.code == 200)
+                {
+                    return "token";
+                } else
+                {
+                    throw new Exception();
+                }
+
+            }
+
+      
+
+       
         }
 
         private class User
